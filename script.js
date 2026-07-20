@@ -62,6 +62,12 @@ document.addEventListener('DOMContentLoaded', () => {
         wishForm.reset();
         wishForm.classList.remove('hidden');
         successMessage.classList.add('hidden');
+        
+        // Khôi phục lại tên nếu có trên URL (vì reset đã xóa mất)
+        const guestNameParam = new URLSearchParams(window.location.search).get('guest');
+        if (guestNameParam) {
+            document.getElementById('sender-name').value = guestNameParam;
+        }
     });
 
     // Đóng modal khi bấm nút X
@@ -146,6 +152,12 @@ document.addEventListener('DOMContentLoaded', () => {
         rsvpForm.classList.remove('hidden');
         rsvpSuccess.classList.add('hidden');
         rsvpForm.reset();
+        
+        // Khôi phục lại tên nếu có trên URL (vì reset đã xóa mất)
+        const guestNameParam = new URLSearchParams(window.location.search).get('guest');
+        if (guestNameParam) {
+            document.getElementById('rsvp-name').value = guestNameParam;
+        }
     });
 
     rsvpCloseBtn.addEventListener('click', () => {
