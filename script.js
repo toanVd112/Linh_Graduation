@@ -3,14 +3,21 @@ document.addEventListener('DOMContentLoaded', () => {
     // Lấy URL hiện tại
     const urlParams = new URLSearchParams(window.location.search);
     // Lấy giá trị của biến 'guest'
-    const guestName = urlParams.get('guest');
+    const guestNameParam = urlParams.get('guest');
 
-    // Phần tử HTML để hiển thị tên
+    // Lấy phần tử H3 để hiển thị tên
     const guestNameElement = document.getElementById('guest-name');
 
-    if (guestName) {
-        // Nếu có tên trên URL, cập nhật vào HTML
-        guestNameElement.textContent = guestName;
+    // Nếu có tham số 'guest', cập nhật nội dung của H3 và tự động điền vào Form
+    if (guestNameParam) {
+        guestNameElement.textContent = guestNameParam;
+        
+        // Tự động điền và ẩn ô nhập tên trong các Form
+        document.getElementById('sender-name').value = guestNameParam;
+        document.getElementById('wish-name-group').style.display = 'none';
+
+        document.getElementById('rsvp-name').value = guestNameParam;
+        document.getElementById('rsvp-name-group').style.display = 'none';
     } else {
         // Nếu không có, để mặc định (có thể đổi thành 'Bạn' hoặc 'Quý khách')
         guestNameElement.textContent = 'Quý khách';
