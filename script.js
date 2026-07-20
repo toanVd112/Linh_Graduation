@@ -195,6 +195,15 @@ document.addEventListener('DOMContentLoaded', () => {
         countdownModal.classList.add('active');
         updateCountdown(); // Cập nhật ngay lập tức
         countdownInterval = setInterval(updateCountdown, 1000);
+
+        // Hiệu ứng bắn pháo hoa khi mở đếm ngược
+        confetti({
+            particleCount: 100,
+            spread: 70,
+            origin: { y: 0.6 },
+            colors: ['#a40026', '#ffffff', '#ffd700'],
+            zIndex: 10000 // Đảm bảo pháo hoa bay trên lớp màn hình mờ
+        });
     });
 
     countdownCloseBtn.addEventListener('click', () => {
