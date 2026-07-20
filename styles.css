@@ -1,0 +1,393 @@
+:root {
+    --ueb-red: #a40026; /* Màu đỏ đặc trưng của trường */
+    --ueb-red-light: #e61c47;
+    --white: #ffffff;
+    --text-main: #333333;
+    --text-light: #666666;
+    --bg-light: #fdf6f7; /* Tone màu sáng hơi pha chút đỏ nhạt */
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    /* Thêm ảnh nền trường học/lễ phục với lớp phủ màu sáng (opacity 0.85) để không bị rối mắt */
+    background: linear-gradient(rgba(253, 246, 247, 0.85), rgba(253, 246, 247, 0.9)), 
+                url('https://images.unsplash.com/photo-1541339907198-e08756dedf3f?q=80&w=2070&auto=format&fit=crop') center/cover fixed;
+    color: var(--text-main);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    position: relative;
+    overflow-x: hidden;
+}
+
+/* Thêm các họa tiết trang trí lơ lửng cho không gian đỡ trống */
+.background-decor {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    z-index: -1;
+    overflow: hidden;
+}
+
+.background-decor::before,
+.background-decor::after {
+    content: '';
+    position: absolute;
+    background: radial-gradient(circle, rgba(164,0,38,0.08) 0%, rgba(255,255,255,0) 70%);
+    border-radius: 50%;
+}
+
+.background-decor::before {
+    top: -10vw;
+    right: -10vw;
+    width: 40vw;
+    height: 40vw;
+    animation: float1 10s infinite alternate ease-in-out;
+}
+
+.background-decor::after {
+    bottom: -10vw;
+    left: -10vw;
+    width: 50vw;
+    height: 50vw;
+    animation: float2 12s infinite alternate ease-in-out;
+}
+
+@keyframes float1 {
+    0% { transform: translate(0, 0); }
+    100% { transform: translate(-30px, 30px); }
+}
+
+@keyframes float2 {
+    0% { transform: translate(0, 0); }
+    100% { transform: translate(30px, -30px); }
+}
+
+.card-container {
+    background: var(--white);
+    max-width: 450px;
+    width: 100%;
+    border-radius: 20px;
+    padding: 40px 30px;
+    box-shadow: 0 20px 40px rgba(164, 0, 38, 0.08), 
+                0 1px 3px rgba(0,0,0,0.05);
+    text-align: center;
+    position: relative;
+    border-top: 5px solid var(--ueb-red);
+    animation: slideUp 0.8s ease-out;
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.logo-container {
+    margin-bottom: 20px;
+}
+
+.school-logo {
+    height: 90px;
+    object-fit: contain;
+}
+
+.avatar-container {
+    width: 140px;
+    height: 140px;
+    margin: 0 auto 20px;
+    border-radius: 50%;
+    padding: 4px;
+    background: linear-gradient(135deg, var(--ueb-red), var(--ueb-red-light));
+}
+
+.avatar-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 3px solid var(--white);
+}
+
+.titles .subtitle {
+    font-family: 'Playfair Display', serif;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--ueb-red);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+}
+
+.titles .name {
+    font-family: 'Playfair Display', serif;
+    font-size: 32px;
+    font-weight: 700;
+    color: var(--text-main);
+    margin-bottom: 25px;
+}
+
+.invitation-text {
+    margin-bottom: 30px;
+}
+
+.invitation-text p {
+    font-size: 15px;
+    color: var(--text-light);
+}
+
+.guest-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 28px;
+    font-style: italic;
+    color: var(--ueb-red);
+    margin: 10px 0;
+    font-weight: 700;
+}
+
+.details-box {
+    background-color: #fafafa;
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 30px;
+    text-align: left;
+}
+
+.detail-item {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 15px;
+}
+
+.detail-item:last-child {
+    margin-bottom: 0;
+}
+
+.icon-circle {
+    width: 36px;
+    height: 36px;
+    min-width: 36px;
+    background-color: rgba(164, 0, 38, 0.1);
+    color: var(--ueb-red);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 15px;
+    font-size: 16px;
+}
+
+.detail-text strong {
+    display: block;
+    font-size: 14px;
+    color: var(--text-light);
+    margin-bottom: 4px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.detail-text p {
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--text-main);
+    margin-bottom: 2px;
+}
+
+.detail-text .sub-text {
+    font-size: 13px;
+    font-weight: 400;
+    color: var(--text-light);
+}
+
+.actions {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+}
+
+.btn {
+    padding: 12px 24px;
+    border-radius: 50px;
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    border: none;
+}
+
+.btn-primary {
+    background-color: var(--ueb-red);
+    color: var(--white);
+    box-shadow: 0 4px 15px rgba(164, 0, 38, 0.3);
+}
+
+.btn-primary:hover {
+    background-color: var(--ueb-red-light);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(164, 0, 38, 0.4);
+}
+
+.btn-secondary {
+    background-color: var(--white);
+    color: var(--ueb-red);
+    border: 1px solid var(--ueb-red);
+}
+
+.btn-secondary:hover {
+    background-color: rgba(164, 0, 38, 0.05);
+}
+
+@media (max-width: 480px) {
+    .card-container {
+        padding: 30px 20px;
+    }
+    
+    .titles .name {
+        font-size: 28px;
+    }
+    
+    .guest-name {
+        font-size: 24px;
+    }
+}
+
+/* Modal CSS */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(5px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+}
+
+.modal-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.modal-content {
+    background: var(--white);
+    width: 90%;
+    max-width: 400px;
+    border-radius: 16px;
+    padding: 30px;
+    position: relative;
+    transform: translateY(-20px);
+    transition: all 0.3s ease;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+.modal-overlay.active .modal-content {
+    transform: translateY(0);
+}
+
+.close-btn {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    font-size: 24px;
+    color: var(--text-light);
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+.close-btn:hover {
+    color: var(--ueb-red);
+}
+
+.modal-content h2 {
+    font-family: 'Playfair Display', serif;
+    color: var(--ueb-red);
+    margin-bottom: 5px;
+}
+
+.modal-desc {
+    font-size: 14px;
+    color: var(--text-light);
+    margin-bottom: 20px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+    text-align: left;
+}
+
+.form-group label {
+    display: block;
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: var(--text-main);
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    transition: border-color 0.2s;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--ueb-red);
+}
+
+.btn-submit-wish {
+    width: 100%;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+.success-message {
+    text-align: center;
+    padding: 20px 0;
+}
+
+.success-message i {
+    font-size: 48px;
+    color: #4caf50;
+    margin-bottom: 15px;
+}
+
+.success-message h3 {
+    color: var(--text-main);
+    margin-bottom: 5px;
+}
+
+.hidden {
+    display: none !important;
+}

@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thiệp Mời Tốt Nghiệp - Phạm Quỳnh Linh</title>
+    <!-- Favicon (Logo trên tab trình duyệt) -->
+    <link rel="icon" type="image/jpeg" href="LogoTab2.jpg">
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,500;0,700;1,500&display=swap"
+        rel="stylesheet">
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Confetti -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <div class="background-decor"></div>
+
+    <div class="card-container">
+        <!-- Logo -->
+        <div class="logo-container">
+            <!-- Bạn có thể thay src bằng link logo thật của trường -->
+            <img src="UEBLogo2.png" alt="UEB Logo" class="school-logo">
+        </div>
+
+        <!-- Avatar -->
+        <div class="avatar-container">
+            <!-- Thay ảnh của bạn vào src dưới đây -->
+            <img id="avatar-img" src="Linh.jpg" alt="Phạm Quỳnh Linh" class="avatar-image"
+                onerror="this.src='https://images.unsplash.com/photo-1523050854058-8df90110c9f1?q=80&w=2070&auto=format&fit=crop'"
+                style="cursor: pointer;" title="Bấm để xem ảnh lớn">
+        </div>
+
+        <!-- Tiêu đề -->
+        <div class="titles">
+            <h2 class="subtitle">LỄ TRAO BẰNG TỐT NGHIỆP</h2>
+            <h1 class="name">Phạm Quỳnh Linh</h1>
+        </div>
+
+        <!-- Lời mời cá nhân hóa -->
+        <div class="invitation-text">
+            <p>Trân trọng kính mời:</p>
+            <h3 id="guest-name" class="guest-name">Quý khách</h3>
+            <p>Đến dự buổi lễ tốt nghiệp và chia vui cùng gia đình</p>
+        </div>
+
+        <!-- Thông tin chi tiết -->
+        <div class="details-box">
+            <div class="detail-item">
+                <div class="icon-circle"><i class="fa-regular fa-calendar-days"></i></div>
+                <div class="detail-text">
+                    <strong>Thời gian</strong>
+                    <p>Chủ nhật, ngày 26 tháng 07 năm 2026</p>
+                </div>
+            </div>
+
+            <div class="detail-item">
+                <div class="icon-circle"><i class="fa-solid fa-location-dot"></i></div>
+                <div class="detail-text">
+                    <strong>Địa điểm</strong>
+                    <p>Trung tâm Hội nghị Quốc gia (NCC)</p>
+                    <p class="sub-text">Đường Phạm Hùng, Mễ Trì, Nam Từ Liêm, Hà Nội</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- CTA Buttons -->
+        <div class="actions">
+            <a href="https://www.google.com/maps/search/?api=1&query=Trung+tâm+Hội+nghị+Quốc+gia+NCC,+Phạm+Hùng,+Mễ+Trì,+Nam+Từ+Liêm,+Hà+Nội" target="_blank" class="btn btn-primary">
+                <i class="fa-solid fa-map-location-dot"></i> Xem bản đồ
+            </a>
+            <button id="btn-wish" class="btn btn-secondary">
+                <i class="fa-solid fa-envelope-open-text"></i> Gửi lời chúc
+            </button>
+        </div>
+    </div>
+
+    <!-- Modal Gửi lời chúc -->
+    <div id="wish-modal" class="modal-overlay">
+        <div class="modal-content">
+            <span class="close-btn">&times;</span>
+            <h2>Gửi Lời Chúc</h2>
+            <p class="modal-desc">Hãy để lại những lời chúc tốt đẹp nhất nhé!</p>
+            <form id="wish-form">
+                <div class="form-group">
+                    <label for="sender-name">Tên của bạn</label>
+                    <input type="text" id="sender-name" name="Tên" placeholder="Ví dụ: Nguyễn Văn A" required>
+                </div>
+                <div class="form-group">
+                    <label for="wish-message">Lời chúc</label>
+                    <textarea id="wish-message" name="Lời_chúc" rows="4" placeholder="Nhập lời chúc của bạn ở đây..."
+                        required></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary btn-submit-wish">Gửi yêu thương ❤️</button>
+            </form>
+
+            <!-- Thông báo thành công (ẩn đi ban đầu) -->
+            <div id="success-message" class="success-message hidden">
+                <i class="fa-solid fa-circle-check"></i>
+                <h3>Gửi thành công!</h3>
+                <p>Cảm ơn bạn rất nhiều vì những lời chúc tốt đẹp!</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Xem Ảnh Đại Diện -->
+    <div id="image-modal" class="modal-overlay">
+        <span class="close-btn image-close-btn"
+            style="color: white; font-size: 40px; top: 20px; right: 30px;">&times;</span>
+        <img id="full-size-img" src="" alt="Phạm Quỳnh Linh zoom"
+            style="max-width: 90%; max-height: 90vh; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); object-fit: contain; transform: translateY(-20px); transition: all 0.3s ease;">
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
