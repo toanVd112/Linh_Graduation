@@ -171,7 +171,7 @@ document.addEventListener('DOMContentLoaded', () => {
         submitBtn.disabled = true;
 
         try {
-            await fetch("https://formspree.io/f/mjgnrezy", {
+            await fetch("https://formspree.io/f/meeykrlz", {
                 method: 'POST',
                 headers: {
                     'Accept': 'application/json',
