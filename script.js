@@ -127,6 +127,82 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
+    // 3.5. Logic xử lý Modal Xác nhận tham dự (RSVP)
+    const btnRsvp = document.getElementById('btn-rsvp');
+    const rsvpModal = document.getElementById('rsvp-modal');
+    const rsvpCloseBtn = document.querySelector('.rsvp-close-btn');
+    const rsvpForm = document.getElementById('rsvp-form');
+    const rsvpSuccess = document.getElementById('rsvp-success');
+
+    btnRsvp.addEventListener('click', () => {
+        rsvpModal.classList.add('active');
+        rsvpForm.classList.remove('hidden');
+        rsvpSuccess.classList.add('hidden');
+        rsvpForm.reset();
+    });
+
+    rsvpCloseBtn.addEventListener('click', () => {
+        rsvpModal.classList.remove('active');
+    });
+
+    rsvpModal.addEventListener('click', (e) => {
+        if (e.target === rsvpModal) {
+            rsvpModal.classList.remove('active');
+        }
+    });
+
+    rsvpForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        
+        const formData = new FormData(rsvpForm);
+        const name = formData.get('Tên_Khách');
+        const status = formData.get('Tham_Dự');
+
+        const submitBtn = rsvpForm.querySelector('.btn-submit-rsvp');
+        const originalBtnText = submitBtn.textContent;
+        submitBtn.textContent = 'Đang gửi...';
+        submitBtn.disabled = true;
+
+        try {
+            await fetch("https://formspree.io/f/mjgnrezy", {
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    Xác_Nhận_Từ: name,
+                    Tình_Trạng_Tham_Dự: status
+                })
+            });
+
+            // Ẩn form, hiện thông báo
+            rsvpForm.classList.add('hidden');
+            rsvpSuccess.classList.remove('hidden');
+
+            // Bắn pháo giấy nhẹ nếu xác nhận tham gia
+            if (status.includes("Có")) {
+                confetti({
+                    particleCount: 50,
+                    spread: 40,
+                    origin: { y: 0.6 },
+                    zIndex: 10000
+                });
+            }
+
+            // Tự động đóng modal
+            setTimeout(() => {
+                rsvpModal.classList.remove('active');
+                submitBtn.textContent = originalBtnText;
+                submitBtn.disabled = false;
+            }, 3000);
+        } catch (error) {
+            alert('Có lỗi xảy ra, vui lòng thử lại sau nhé!');
+            submitBtn.textContent = originalBtnText;
+            submitBtn.disabled = false;
+        }
+    });
+
     // 4. Logic xử lý Modal Xem Ảnh
     const avatarImg = document.getElementById('avatar-img');
     const imageModal = document.getElementById('image-modal');

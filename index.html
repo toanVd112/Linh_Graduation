@@ -49,7 +49,7 @@
         <div class="invitation-text">
             <p>Trân trọng kính mời:</p>
             <h3 id="guest-name" class="guest-name">Quý khách</h3>
-            <p>Đến dự buổi lễ tốt nghiệp và chia vui cùng gia đình</p>
+            <p>Đến dự buổi lễ tốt nghiệp và chung vui cùng gia đình</p>
         </div>
 
         <!-- Thông tin chi tiết -->
@@ -62,7 +62,8 @@
                 </div>
             </div>
 
-            <a href="https://www.google.com/maps/search/?api=1&query=Trung+tâm+Hội+nghị+Quốc+gia+NCC,+Phạm+Hùng,+Mễ+Trì,+Nam+Từ+Liêm,+Hà+Nội" target="_blank" class="detail-item clickable-item" title="Bấm để mở Google Maps">
+            <a href="https://www.google.com/maps/search/?api=1&query=Trung+tâm+Hội+nghị+Quốc+gia+NCC,+Phạm+Hùng,+Mễ+Trì,+Nam+Từ+Liêm,+Hà+Nội"
+                target="_blank" class="detail-item clickable-item" title="Bấm để mở Google Maps">
                 <div class="icon-circle"><i class="fa-solid fa-location-dot"></i></div>
                 <div class="detail-text">
                     <strong>Địa điểm</strong>
@@ -74,6 +75,9 @@
 
         <!-- CTA Buttons -->
         <div class="actions">
+            <button id="btn-rsvp" class="btn btn-primary">
+                <i class="fa-solid fa-check-to-slot"></i> Xác nhận tham dự
+            </button>
             <button id="btn-wish" class="btn btn-secondary">
                 <i class="fa-solid fa-envelope-open-text"></i> Gửi lời chúc
             </button>
@@ -104,6 +108,44 @@
                 <i class="fa-solid fa-circle-check"></i>
                 <h3>Gửi thành công!</h3>
                 <p>Cảm ơn bạn rất nhiều vì những lời chúc tốt đẹp!</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Xác nhận tham dự (RSVP) -->
+    <div id="rsvp-modal" class="modal-overlay">
+        <div class="modal-content">
+            <span class="close-btn rsvp-close-btn">&times;</span>
+            <h2>Xác Nhận Tham Dự</h2>
+            <p class="modal-desc">Sự hiện diện của bạn là niềm vinh hạnh cho mình!</p>
+            <form id="rsvp-form">
+                <div class="form-group">
+                    <label for="rsvp-name">Tên của bạn</label>
+                    <input type="text" id="rsvp-name" name="Tên_Khách" placeholder="Ví dụ: Nguyễn Văn A" required>
+                </div>
+                <div class="form-group">
+                    <label>Bạn có thể tham dự không?</label>
+                    <div class="radio-group">
+                        <label class="radio-label">
+                            <input type="radio" name="Tham_Dự" value="Có, chắc chắn!" required checked>
+                            <span class="radio-custom"></span>
+                            Có, mình sẽ tới chung vui!
+                        </label>
+                        <label class="radio-label">
+                            <input type="radio" name="Tham_Dự" value="Không thể tham gia">
+                            <span class="radio-custom"></span>
+                            Rất tiếc, mình có việc bận mất rồi.
+                        </label>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary btn-submit-rsvp">Gửi Xác Nhận</button>
+            </form>
+            
+            <!-- Thông báo thành công -->
+            <div id="rsvp-success" class="success-message hidden">
+                <i class="fa-solid fa-circle-check"></i>
+                <h3>Đã ghi nhận!</h3>
+                <p>Cảm ơn bạn đã phản hồi. Hẹn gặp lại bạn nhé!</p>
             </div>
         </div>
     </div>
