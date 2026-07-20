@@ -158,4 +158,54 @@ document.addEventListener('DOMContentLoaded', () => {
             fullSizeImg.style.transform = 'translateY(-20px)';
         }
     });
+
+    // 5. Logic Đếm Ngược Thời Gian
+    const timeItem = document.getElementById('time-item');
+    const countdownModal = document.getElementById('countdown-modal');
+    const countdownCloseBtn = document.querySelector('.countdown-close-btn');
+    
+    let countdownInterval;
+    const targetDate = new Date("2026-07-26T13:00:00").getTime();
+
+    function updateCountdown() {
+        const now = new Date().getTime();
+        const distance = targetDate - now;
+
+        if (distance < 0) {
+            document.getElementById("cd-days").innerText = "00";
+            document.getElementById("cd-hours").innerText = "00";
+            document.getElementById("cd-minutes").innerText = "00";
+            document.getElementById("cd-seconds").innerText = "00";
+            clearInterval(countdownInterval);
+            return;
+        }
+
+        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+        document.getElementById("cd-days").innerText = days.toString().padStart(2, '0');
+        document.getElementById("cd-hours").innerText = hours.toString().padStart(2, '0');
+        document.getElementById("cd-minutes").innerText = minutes.toString().padStart(2, '0');
+        document.getElementById("cd-seconds").innerText = seconds.toString().padStart(2, '0');
+    }
+
+    timeItem.addEventListener('click', () => {
+        countdownModal.classList.add('active');
+        updateCountdown(); // Cập nhật ngay lập tức
+        countdownInterval = setInterval(updateCountdown, 1000);
+    });
+
+    countdownCloseBtn.addEventListener('click', () => {
+        countdownModal.classList.remove('active');
+        clearInterval(countdownInterval);
+    });
+
+    countdownModal.addEventListener('click', (e) => {
+        if (e.target === countdownModal) {
+            countdownModal.classList.remove('active');
+            clearInterval(countdownInterval);
+        }
+    });
 });

@@ -54,29 +54,26 @@
 
         <!-- Thông tin chi tiết -->
         <div class="details-box">
-            <div class="detail-item">
+            <div class="detail-item clickable-item" id="time-item" title="Bấm để xem đếm ngược">
                 <div class="icon-circle"><i class="fa-regular fa-calendar-days"></i></div>
                 <div class="detail-text">
                     <strong>Thời gian</strong>
-                    <p>Chủ nhật, ngày 26 tháng 07 năm 2026</p>
+                    <p>13h00 - Chủ nhật, ngày 26 tháng 07 năm 2026</p>
                 </div>
             </div>
 
-            <div class="detail-item">
+            <a href="https://www.google.com/maps/search/?api=1&query=Trung+tâm+Hội+nghị+Quốc+gia+NCC,+Phạm+Hùng,+Mễ+Trì,+Nam+Từ+Liêm,+Hà+Nội" target="_blank" class="detail-item clickable-item" title="Bấm để mở Google Maps">
                 <div class="icon-circle"><i class="fa-solid fa-location-dot"></i></div>
                 <div class="detail-text">
                     <strong>Địa điểm</strong>
                     <p>Trung tâm Hội nghị Quốc gia (NCC)</p>
                     <p class="sub-text">Đường Phạm Hùng, Mễ Trì, Nam Từ Liêm, Hà Nội</p>
                 </div>
-            </div>
+            </a>
         </div>
 
         <!-- CTA Buttons -->
         <div class="actions">
-            <a href="https://www.google.com/maps/search/?api=1&query=Trung+tâm+Hội+nghị+Quốc+gia+NCC,+Phạm+Hùng,+Mễ+Trì,+Nam+Từ+Liêm,+Hà+Nội" target="_blank" class="btn btn-primary">
-                <i class="fa-solid fa-map-location-dot"></i> Xem bản đồ
-            </a>
             <button id="btn-wish" class="btn btn-secondary">
                 <i class="fa-solid fa-envelope-open-text"></i> Gửi lời chúc
             </button>
@@ -117,6 +114,33 @@
             style="color: white; font-size: 40px; top: 20px; right: 30px;">&times;</span>
         <img id="full-size-img" src="" alt="Phạm Quỳnh Linh zoom"
             style="max-width: 90%; max-height: 90vh; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); object-fit: contain; transform: translateY(-20px); transition: all 0.3s ease;">
+    </div>
+
+    <!-- Modal Đếm Ngược -->
+    <div id="countdown-modal" class="modal-overlay">
+        <div class="modal-content" style="text-align: center;">
+            <span class="close-btn countdown-close-btn">&times;</span>
+            <h2>Sắp đến giờ G!</h2>
+            <p class="modal-desc">Đếm ngược thời gian tới lễ tốt nghiệp</p>
+            <div class="countdown-container">
+                <div class="countdown-box">
+                    <span id="cd-days">00</span>
+                    <small>Ngày</small>
+                </div>
+                <div class="countdown-box">
+                    <span id="cd-hours">00</span>
+                    <small>Giờ</small>
+                </div>
+                <div class="countdown-box">
+                    <span id="cd-minutes">00</span>
+                    <small>Phút</small>
+                </div>
+                <div class="countdown-box">
+                    <span id="cd-seconds">00</span>
+                    <small>Giây</small>
+                </div>
+            </div>
+        </div>
     </div>
 
     <script src="script.js"></script>
