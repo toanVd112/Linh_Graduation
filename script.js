@@ -260,7 +260,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const countdownCloseBtn = document.querySelector('.countdown-close-btn');
     
     let countdownInterval;
-    const targetDate = new Date("2026-07-26T13:00:00").getTime();
+    const targetDate = new Date("2026-07-26T10:00:00").getTime();
 
     function updateCountdown() {
         const now = new Date().getTime();
